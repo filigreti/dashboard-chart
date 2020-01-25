@@ -1,10 +1,15 @@
 <template>
   <div class="d-flex" id="app">
-    <div id="nav">
-      <Sidebar />
+    <div class="nav-side" ref="nav" :style="`width:${size}px; `">
+      <Sidebar v-if="!change" />
+      <Smallbar v-else />
     </div>
-    <div class="route-area">
-      <TopHeader class="t-header" />
+    <div
+      :style="`margin-left:${widthArea}px`"
+      ref="routeCont"
+      class="route-area"
+    >
+      <TopHeader v-model="change" class="t-header" />
       <div class="router-container">
         <router-view />
       </div>
@@ -14,11 +19,39 @@
 
 <script>
 import Sidebar from './components/Sidebar';
+import Smallbar from './components/Smallbar';
 import TopHeader from './components/TopHeader';
 export default {
+  data() {
+    return {
+      sidebar: '',
+      size: 243,
+      change: false
+    };
+  },
   components: {
     Sidebar,
-    TopHeader
+    TopHeader,
+    Smallbar
+  },
+  watch: {
+    change(x) {
+      if (x == true) {
+        this.size = 68;
+        this.sidebar = 68;
+      } else {
+        this.size = 243;
+        this.sidebar = 243;
+      }
+    }
+  },
+  computed: {
+    widthArea() {
+      return this.sidebar;
+    }
+  },
+  mounted() {
+    this.sidebar = this.$refs.nav.clientWidth;
   }
 };
 </script>
@@ -31,35 +64,42 @@ body {
   margin: 0;
   padding: 0;
 }
+html {
+  font-size: 16px;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#nav {
-  width: 243px;
+.nav-side {
+  position: fixed;
+  left: 0;
   height: 100vh;
-  position: sticky;
-  top: 0;
   background: #18335a;
+  overflow: hidden;
 }
 
-#nav a {
+.nav-side a,
+.nav-side a:hover {
   font-weight: bold;
   color: white;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
-#nav a.router-link-exact-active {
+.nav-side a.router-link-exact-active {
   color: white;
   text-decoration: none;
   border-radius: 4px;
   background-color: #0093dd;
 }
+
 .route-area {
   flex: 1;
   background: #fcfcfd;
+  box-sizing: border-box;
+  /* margin-left: 243px; */
 }
 .t-header {
   height: 68px;
@@ -68,8 +108,20 @@ body {
   padding: 0 42px;
   position: sticky;
   top: 0;
+  z-index: 10;
 }
 .router-container {
   padding: 40px 40px 0 42px;
+  box-sizing: border-box;
+}
+.slide-leave-active,
+.slide-enter-active {
+  transition: 1s;
+}
+.slide-enter {
+  transform: translate(100%, 0);
+}
+.slide-leave-to {
+  transform: translate(-100%, 0);
 }
 </style>

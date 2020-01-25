@@ -1,21 +1,20 @@
 <template>
-  <main class="side w-100">
-    <img class="img-fluid pl-2 mt-2" src="@/assets/Logo.svg" alt="" />
-    <div class="router-links d-flex flex-column mm">
-      <router-link to="/" class="d-flex align-items-center bottom  btn-route">
+  <main
+    class="side w-100  align-items-center justify-content-center d-flex flex-column "
+  >
+    <img class="fluids mt-2" src="@/assets/SVG/logo.svg" alt="" />
+    <div class="router-links d-flex flex-column mm ">
+      <router-link to="/" class="d-flex align-items-center bottom  btn-routes">
         <img src="@/assets/Home.svg" alt="" />
-        <div class="space">Dashboard</div>
       </router-link>
       <router-link
         to="/budget"
-        class="d-flex align-items-center bottom btn-route"
+        class="d-flex align-items-center bottom btn-routes"
       >
         <img src="@/assets/Requests.svg" alt="" />
-        <div class="space">Budget</div>
       </router-link>
-      <router-link to="/approval" class="d-flex align-items-center btn-route">
+      <router-link to="/approval" class="d-flex align-items-center btn-routes">
         <img src="@/assets/Approval.svg" alt="" />
-        <div class="space">Approval</div>
       </router-link>
     </div>
   </main>
@@ -38,10 +37,13 @@ export default {};
 .bottom {
   margin-bottom: 12px;
 }
-.btn-route {
-  padding: 8px 0 8px 16px;
+.btn-routes {
+  padding: 11px;
 }
 .space {
   padding-left: 8px;
+}
+.fluids {
+  height: 32px;
 }
 </style>

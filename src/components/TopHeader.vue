@@ -1,6 +1,6 @@
 <template>
   <main class="top-header d-flex justify-content-between align-items-center">
-    <img src="@/assets/Toggle.svg" alt="" />
+    <img @click="toggle()" src="@/assets/Toggle.svg" alt="" />
     <div class="d-flex align-items-center">
       <img class="pr-4" src="@/assets/avatar.svg" alt="" />
       <div class="d-flex align-items-center">
@@ -18,7 +18,14 @@
 </template>
 
 <script>
-export default {};
+export default {
+  props: ['value'],
+  methods: {
+    toggle() {
+      this.$emit('input', !this.value);
+    }
+  }
+};
 </script>
 
 <style scoped>

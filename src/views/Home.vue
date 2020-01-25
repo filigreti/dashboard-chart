@@ -20,9 +20,11 @@
             </div>
             <b-dropdown
               size="sm"
-              text="Annual"
               variant="success"
               class="mr-3 annual"
+              id="dropdown-right"
+              right
+              text="Annual"
             >
               <b-dropdown-item-button>Action</b-dropdown-item-button>
               <b-dropdown-item-button>Another action</b-dropdown-item-button>
@@ -30,6 +32,35 @@
                 >Something else here...</b-dropdown-item-button
               >
             </b-dropdown>
+          </div>
+          <div class=" budget-body d-flex align-items-center ">
+            <div class="w-50 justify-content-center d-flex">
+              <CircleRadial
+                :Diameter="130"
+                :color="'#6915cf'"
+                :colorTwo="'#6915cf'"
+                :completedSteps="64"
+                :background="'#e5e5e5'"
+                :width="8"
+              />
+            </div>
+
+            <div class="w-50">
+              <div class="d-flex align-item-center mb-3">
+                <img src="@/assets/GreenMoney.svg" alt="" />
+                <div class="spacing">
+                  <div style="font-size:14px">Total <b>CAPEX</b> Spent</div>
+                  <div class="text-black-one">N 18,000,000</div>
+                </div>
+              </div>
+              <div class="d-flex align-item-center mt-2">
+                <img src="@/assets/Redmoney.svg" alt="" />
+                <div class="spacing">
+                  <div style="font-size:14px">Total <b>CAPEX</b> Balance</div>
+                  <div class="text-black-one">N 32,000,000</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="second-budget card-shadow ">
@@ -44,11 +75,12 @@
               >
             </div>
             <b-dropdown
-              style="background:green;"
               size="sm"
-              text="Annual"
               variant="success"
               class="mr-3 annual"
+              id="dropdown-right"
+              right
+              text="Annual"
             >
               <b-dropdown-item-button>Action</b-dropdown-item-button>
               <b-dropdown-item-button>Another action</b-dropdown-item-button>
@@ -56,6 +88,37 @@
                 >Something else here...</b-dropdown-item-button
               >
             </b-dropdown>
+          </div>
+          <div class=" budget-body d-flex align-items-center ">
+            <div class="w-50 justify-content-center d-flex">
+              <CircleRadial
+                :Diameter="130"
+                :color="'#fb0091'"
+                :colorTwo="'#fb0091'"
+                :completedSteps="50"
+                :background="'#e5e5e5'"
+                :width="8"
+              />
+            </div>
+
+            <div class="w-50">
+              <div class="d-flex align-item-center mb-3">
+                <img src="@/assets/PurpleMoney.svg" alt="" />
+                <div class="spacing">
+                  <div style="font-size:14px">
+                    Total <b>OPEX</b> Budget Spent
+                  </div>
+                  <div class="text-black-one">N 10,000,000</div>
+                </div>
+              </div>
+              <div class="d-flex align-item-center mt-2">
+                <img src="@/assets/YellowMoney.svg" alt="" />
+                <div class="spacing">
+                  <div style="font-size:14px">Total <b>OPEX</b> Balance</div>
+                  <div class="text-black-one">N 10,000,000</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -93,20 +156,53 @@
         </div>
       </div>
     </div>
+    <div class="bar-area">
+      <div class="chart-one card-shadow">
+        <div class="status-heading p-0">Total Opex Budget Statistics</div>
+        <div style="font-size:14px">
+          Total Budget Spent vs Total Budget Balance
+        </div>
+        <div style="font-size:13px" class="d-flex align-items-center mt-1">
+          <div>Total Spent</div>
+          <div class="rectangle">N 8,282,289</div>
+          <div class="ml-2">Total Balance</div>
+          <div style="color:#c00202" class="rectangle">N 8,282,289</div>
+        </div>
+        <Barchart class="mt-3" />
+      </div>
+      <div class="chart-two card-shadow">
+        <div class="status-heading p-0">Total Opex Budget Statistics</div>
+        <div style="font-size:13px">
+          Total Budget Spent vs Total Budget Balance
+        </div>
+        <div style="font-size:13px" class="d-flex align-items-center mt-1">
+          <div>Total Spent</div>
+          <div class="rectangle">N 8,282,289</div>
+          <div class="ml-2">Total Balance</div>
+          <div style="color:#c00202" class="rectangle">N 8,282,289</div>
+        </div>
+        <Barchart class="mt-3" />
+      </div>
+    </div>
   </main>
 </template>
 
 <script>
-// @ is an alias to /src
-
+import CircleRadial from '../components/progress-bar/Circle';
+import Barchart from '../components/bar-chart/BarChart';
 export default {
-  name: 'home'
+  name: 'home',
+  components: {
+    CircleRadial,
+    Barchart
+  }
 };
 </script>
 
 <style scoped>
 .home {
   font-family: 'Source Sans Pro', sans-serif;
+  box-sizing: border-box;
 }
 .dashboard {
   font-family: 'Abril Fatface', cursive;
@@ -122,19 +218,18 @@ export default {
   flex: 6;
   margin-right: 20px;
   margin-left: 3px;
-  height: 67vh;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(4, 1fr);
   grid-row-gap: 20px;
 }
 .status {
-  flex: 3.5;
+  flex: 3.2;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(6, 1fr);
   grid-row-gap: 0.75rem;
-  height: 67vh;
+  /* height: 67vh; */
 }
 
 .first-budget {
@@ -159,6 +254,8 @@ export default {
 }
 .head-count {
   margin-top: 8px;
+  box-sizing: border-box;
+  height: 460px;
 }
 .status-header {
   height: 31%;
@@ -225,7 +322,7 @@ export default {
   font-weight: bold;
   font-size: 14px;
   border-radius: 6px;
-  color: #512c62 !important;
+  color: #1fab89 !important;
   border: none;
 }
 .green:hover,
@@ -238,10 +335,59 @@ export default {
   outline: none !important;
   box-shadow: none;
 }
-.annual,
-.btn-success {
+.annual {
   color: #4dd599 !important;
   border-radius: 6px;
   background: rgba(77, 213, 153, 0.2) !important;
+}
+.spacing {
+  padding-left: 1rem;
+}
+.budget-body {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bar-area {
+  display: grid;
+  width: 100%;
+  height: 400px;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 10px;
+}
+.chart-one {
+  padding: 20px 35px;
+}
+.rectangle {
+  border-radius: 8.5px;
+  background-color: #f2f2f2;
+  margin-left: 6px;
+  padding: 0px 9px;
+  color: #4abba4;
+}
+.chart-two {
+  padding: 20px 35px;
+}
+</style>
+<style>
+.btn-success {
+  color: #4dd599 !important;
+  border-radius: none;
+  background: none !important;
+  border: none !important;
+}
+.btn-success:hover,
+.btn-success:focus,
+.btn-success:active {
+  color: #4dd599 !important;
+  border-radius: none;
+  background: none !important;
+}
+.dropdown-menu {
+  top: 7px !important;
 }
 </style>
