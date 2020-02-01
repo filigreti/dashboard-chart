@@ -156,7 +156,7 @@
         </div>
       </div>
     </div>
-    <div class="bar-area">
+    <div class="ml-1 bar-area">
       <div class="chart-one card-shadow">
         <div class="status-heading p-0">Total Opex Budget Statistics</div>
         <div style="font-size:14px">

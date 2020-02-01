@@ -4,11 +4,7 @@
       <Sidebar v-if="!change" />
       <Smallbar v-else />
     </div>
-    <div
-      :style="`margin-left:${widthArea}px`"
-      ref="routeCont"
-      class="route-area"
-    >
+    <div :style="`margin-left:${widthArea}px`" ref="routeCont" class="route-area">
       <TopHeader v-model="change" class="t-header" />
       <div class="router-container">
         <router-view />
@@ -18,13 +14,13 @@
 </template>
 
 <script>
-import Sidebar from './components/Sidebar';
-import Smallbar from './components/Smallbar';
-import TopHeader from './components/TopHeader';
+import Sidebar from "./components/Sidebar";
+import Smallbar from "./components/Smallbar";
+import TopHeader from "./components/TopHeader";
 export default {
   data() {
     return {
-      sidebar: '',
+      sidebar: "",
       size: 243,
       change: false
     };
@@ -68,7 +64,7 @@ html {
   font-size: 16px;
 }
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -76,7 +72,7 @@ html {
 .nav-side {
   position: fixed;
   left: 0;
-  height: 100vh;
+  min-height: 100vh;
   background: #18335a;
   overflow: hidden;
 }
@@ -114,14 +110,12 @@ html {
   padding: 40px 40px 0 42px;
   box-sizing: border-box;
 }
-.slide-leave-active,
-.slide-enter-active {
-  transition: 1s;
+.component-fade-enter-active,
+.component-fade-leave-active {
+  transition: opacity 0.3s ease;
 }
-.slide-enter {
-  transform: translate(100%, 0);
-}
-.slide-leave-to {
-  transform: translate(-100%, 0);
+.component-fade-enter, .component-fade-leave-to
+/* .component-fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>
